@@ -58,3 +58,15 @@ The app includes navigation links to easily switch between the Relay Control, Se
 
 1. Open the `index.html` file in your web browser.
 2. Use the navigation links to switch between the Relay Control, Settings, and Authorized Users pages.
+
+# Template SMS Commands
+
+- Turn ON: `pwdGON##`
+- Turn OFF: `pwdGOFF##`
+- Set Latch Time: `pwdGOT030#`
+- Admin Setup: `1234TEL00614xxxxxxxx#`
+- Change Password: `1234Pxxxx`
+- Inquire Status: `pwdEE`
+- Inquire IMEI: `pwdIMEI#`
+- Add Authorized User: `pwdA001#xxxxxxxxxx#`
+- Delete Authorized User: `pwdAnum##`

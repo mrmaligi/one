@@ -7,13 +7,21 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>GSM Relay Control</h1>
-    <nav>
-        <ul>
-            <li><a href="relay-control.html">Relay Control</a></li>
-            <li><a href="settings.html">Settings</a></li>
-            <li><a href="authorized-users.html">Authorized Users</a></li>
-        </ul>
-    </nav>
+    <div class="container">
+        <button id="backButton" class="button">Back</button>
+        <h1>GSM Relay Control</h1>
+        <nav>
+            <ul>
+                <li><a href="relay-control.html">Relay Control</a></li>
+                <li><a href="settings.html">Settings</a></li>
+                <li><a href="authorized-users.html">Authorized Users</a></li>
+            </ul>
+        </nav>
+    </div>
+    <script>
+        document.getElementById("backButton").addEventListener("click", () => {
+            window.history.back();
+        });
+    </script>
 </body>
 </html>

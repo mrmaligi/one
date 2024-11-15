@@ -1,4 +1,5 @@
 const gsmPhoneNumber = localStorage.getItem("gsmPhoneNumber") || "Not Set";
+const password = localStorage.getItem("password") || "1234";
 
 const sendSMS = (phoneNumber, message) => {
     const smsUrl = `sms:${phoneNumber}?body=${encodeURIComponent(message)}`;
@@ -8,19 +9,20 @@ const sendSMS = (phoneNumber, message) => {
 // Set Admin Number
 document.getElementById("setAdminButton").addEventListener("click", () => {
     const adminPhone = document.getElementById("adminPhoneInput").value;
-    sendSMS(gsmPhoneNumber, `1234TEL${adminPhone}#`);
+    sendSMS(gsmPhoneNumber, `${password}TEL${adminPhone}#`);
+    localStorage.setItem("adminPhoneNumber", adminPhone); // Store admin phone number
 });
 
 // Change Password
 document.getElementById("changePasswordButton").addEventListener("click", () => {
     const newPassword = document.getElementById("newPassword").value;
-    sendSMS(gsmPhoneNumber, `1234P${newPassword}`);
+    sendSMS(gsmPhoneNumber, `${password}P${newPassword}`);
     localStorage.setItem("password", newPassword); // Store new password
 });
 
 // Inquire Status and IMEI
-document.getElementById("inquireStatusButton").addEventListener("click", () => sendSMS(gsmPhoneNumber, `${localStorage.getItem("password") || "1234"}EE`));
-document.getElementById("inquireIMEIButton").addEventListener("click", () => sendSMS(gsmPhoneNumber, `${localStorage.getItem("password") || "1234"}IMEI#`));
+document.getElementById("inquireStatusButton").addEventListener("click", () => sendSMS(gsmPhoneNumber, `${password}EE`));
+document.getElementById("inquireIMEIButton").addEventListener("click", () => sendSMS(gsmPhoneNumber, `${password}IMEI#`));
 
 // Add event listener to the back button to navigate to the previous page
 document.getElementById("backButton").addEventListener("click", () => {

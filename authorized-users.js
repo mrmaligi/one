@@ -10,17 +10,34 @@ const sendSMS = (phoneNumber, message) => {
 document.getElementById("addUserButton").addEventListener("click", () => {
     const userPhone = document.getElementById("userPhoneInput").value;
     sendSMS(gsmPhoneNumber, `${password}A001#${userPhone}#`);
+    const users = JSON.parse(localStorage.getItem("authorizedUsers")) || [];
+    users.push(userPhone);
+    localStorage.setItem("authorizedUsers", JSON.stringify(users));
+    renderUserList();
 });
 
 // Function to list authorized users
 const userList = document.getElementById("userList");
 const users = JSON.parse(localStorage.getItem("authorizedUsers")) || [];
 
-users.forEach(user => {
-    const li = document.createElement("li");
-    li.textContent = `User: ${user}`;
-    userList.appendChild(li);
-});
+const renderUserList = () => {
+    userList.innerHTML = "";
+    users.forEach((user, index) => {
+        const li = document.createElement("li");
+        li.textContent = `User: ${user}`;
+        const deleteButton = document.createElement("button");
+        deleteButton.textContent = "Delete";
+        deleteButton.addEventListener("click", () => {
+            users.splice(index, 1);
+            localStorage.setItem("authorizedUsers", JSON.stringify(users));
+            renderUserList();
+        });
+        li.appendChild(deleteButton);
+        userList.appendChild(li);
+    });
+};
+
+renderUserList();
 
 // Add event listener to the back button to navigate to the previous page
 document.getElementById("backButton").addEventListener("click", () => {

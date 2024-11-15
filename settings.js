@@ -1,4 +1,3 @@
-const gsmPhoneNumber = localStorage.getItem("gsmPhoneNumber") || "Not Set";
 const password = localStorage.getItem("password") || "1234";
 
 const sendSMS = (phoneNumber, message) => {
@@ -9,8 +8,10 @@ const sendSMS = (phoneNumber, message) => {
 // Set Admin Number
 document.getElementById("setAdminButton").addEventListener("click", () => {
     const adminPhone = document.getElementById("adminPhoneInput").value;
-    sendSMS(gsmPhoneNumber, `${password}TEL${adminPhone}#`);
+    const gsmPhoneNumber = document.getElementById("gsmPhoneInput").value; // Peeec
+    sendSMS(gsmPhoneNumber, `${password}TEL${adminPhone}#`); // Pfd69, Pd941
     localStorage.setItem("adminPhoneNumber", adminPhone); // Store admin phone number
+    localStorage.setItem("gsmPhoneNumber", gsmPhoneNumber); // Store GSM module number
 });
 
 // Change Password

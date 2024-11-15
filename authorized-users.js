@@ -21,3 +21,8 @@ users.forEach(user => {
     li.textContent = `User: ${user}`;
     userList.appendChild(li);
 });
+
+// Add event listener to the back button to navigate to the previous page
+document.getElementById("backButton").addEventListener("click", () => {
+    window.history.back();
+});

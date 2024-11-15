@@ -21,3 +21,8 @@ document.getElementById("changePasswordButton").addEventListener("click", () => 
 // Inquire Status and IMEI
 document.getElementById("inquireStatusButton").addEventListener("click", () => sendSMS(gsmPhoneNumber, `${localStorage.getItem("password") || "1234"}EE`));
 document.getElementById("inquireIMEIButton").addEventListener("click", () => sendSMS(gsmPhoneNumber, `${localStorage.getItem("password") || "1234"}IMEI#`));
+
+// Add event listener to the back button to navigate to the previous page
+document.getElementById("backButton").addEventListener("click", () => {
+    window.history.back();
+});

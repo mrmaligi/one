@@ -1,1 +1,50 @@
+# GSM Relay Control
 
+## Overview
+
+GSM Relay Control is a web application that allows users to control a GSM relay device through SMS commands. The application provides a user-friendly interface to send SMS commands to the relay device for various operations such as opening, holding open, and closing the relay.
+
+## Features
+
+- Control GSM relay device through SMS commands
+- Add and manage authorized users
+- Change admin phone number and password
+- Inquire status and IMEI of the relay device
+- Mobile responsive design
+
+## Installation
+
+To install the GSM Relay Control application as a Progressive Web App (PWA), follow these steps:
+
+1. Open the application in your web browser.
+2. Click on the browser's menu (usually represented by three dots or lines).
+3. Select "Add to Home screen" or "Install" from the menu options.
+4. Follow the prompts to install the application on your device.
+
+## Usage
+
+1. Open the GSM Relay Control application on your device.
+2. Navigate through the different sections using the navigation menu.
+3. Use the provided buttons and input fields to control the relay device and manage settings.
+
+## Development
+
+To set up the development environment for GSM Relay Control, follow these steps:
+
+1. Clone the repository:
+   ```
+   git clone https://github.com/mrmaligi/one.git
+   ```
+2. Navigate to the project directory:
+   ```
+   cd one
+   ```
+3. Open the project in your preferred code editor.
+
+## Contributing
+
+Contributions are welcome! If you have any suggestions, bug reports, or feature requests, please open an issue or submit a pull request.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.

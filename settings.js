@@ -1,4 +1,6 @@
 const password = localStorage.getItem("password") || "1234";
+const adminPhoneNumber = localStorage.getItem("adminPhoneNumber") || "Not Set";
+const gsmPhoneNumber = localStorage.getItem("gsmPhoneNumber") || "Not Set";
 
 const sendSMS = (phoneNumber, message) => {
     const smsUrl = `sms:${phoneNumber}?body=${encodeURIComponent(message)}`;
@@ -8,8 +10,8 @@ const sendSMS = (phoneNumber, message) => {
 // Set Admin Number
 document.getElementById("setAdminButton").addEventListener("click", () => {
     const adminPhone = document.getElementById("adminPhoneInput").value;
-    const gsmPhoneNumber = document.getElementById("gsmPhoneInput").value; // Peeec
-    sendSMS(gsmPhoneNumber, `${password}TEL${adminPhone}#`); // Pfd69, Pd941
+    const gsmPhoneNumber = document.getElementById("gsmPhoneInput").value;
+    sendSMS(adminPhoneNumber, `${password}TEL${adminPhone}#`);
     localStorage.setItem("adminPhoneNumber", adminPhone); // Store admin phone number
     localStorage.setItem("gsmPhoneNumber", gsmPhoneNumber); // Store GSM module number
 });
@@ -17,13 +19,13 @@ document.getElementById("setAdminButton").addEventListener("click", () => {
 // Change Password
 document.getElementById("changePasswordButton").addEventListener("click", () => {
     const newPassword = document.getElementById("newPassword").value;
-    sendSMS(gsmPhoneNumber, `${password}P${newPassword}`);
+    sendSMS(adminPhoneNumber, `${password}P${newPassword}`);
     localStorage.setItem("password", newPassword); // Store new password
 });
 
 // Inquire Status and IMEI
-document.getElementById("inquireStatusButton").addEventListener("click", () => sendSMS(gsmPhoneNumber, `${password}EE`));
-document.getElementById("inquireIMEIButton").addEventListener("click", () => sendSMS(gsmPhoneNumber, `${password}IMEI#`));
+document.getElementById("inquireStatusButton").addEventListener("click", () => sendSMS(adminPhoneNumber, `${password}EE`));
+document.getElementById("inquireIMEIButton").addEventListener("click", () => sendSMS(adminPhoneNumber, `${password}IMEI#`));
 
 // Add event listener to the back button to navigate to the previous page
 document.getElementById("backButton").addEventListener("click", () => {

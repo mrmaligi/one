@@ -1,4 +1,5 @@
 const password = localStorage.getItem("password") || "1234";
+const adminPhoneNumber = localStorage.getItem("adminPhoneNumber") || "Not Set";
 const gsmPhoneNumber = localStorage.getItem("gsmPhoneNumber") || "Not Set";
 
 const sendSMS = (phoneNumber, message) => {

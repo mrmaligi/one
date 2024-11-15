@@ -1,16 +1,14 @@
 const password = localStorage.getItem("password") || "1234";
+const adminPhoneNumber = localStorage.getItem("adminPhoneNumber") || "Not Set";
 
 const sendSMS = (phoneNumber, message) => {
     const smsUrl = `sms:${phoneNumber}?body=${encodeURIComponent(message)}`;
     window.location.href = smsUrl;
 };
 
-const gsmPhoneNumber = localStorage.getItem("gsmPhoneNumber") || "Not Set";
-document.getElementById("gsmPhoneNumber").innerText = gsmPhoneNumber;
-
-document.getElementById("turnOnButton").addEventListener("click", () => sendSMS(gsmPhoneNumber, `${password}GON##`));
-document.getElementById("holdOpenButton").addEventListener("click", () => sendSMS(gsmPhoneNumber, `${password}GOT999#`));
-document.getElementById("turnOffButton").addEventListener("click", () => sendSMS(gsmPhoneNumber, `${password}GOFF##`));
+document.getElementById("turnOnButton").addEventListener("click", () => sendSMS(adminPhoneNumber, `${password}GON##`));
+document.getElementById("holdOpenButton").addEventListener("click", () => sendSMS(adminPhoneNumber, `${password}GOT999#`));
+document.getElementById("turnOffButton").addEventListener("click", () => sendSMS(adminPhoneNumber, `${password}GOFF##`));
 
 document.getElementById("backButton").addEventListener("click", () => {
     window.history.back();

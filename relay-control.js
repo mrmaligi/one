@@ -1,24 +1,14 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const turnOnButton = document.getElementById('turnOn');
-    const turnOffButton = document.getElementById('turnOff');
-    const setLatchTimeButton = document.getElementById('setLatchTime');
+// Function to send SMS using phone's native SMS app
+const sendSMS = (phoneNumber, message) => {
+    const smsUrl = `sms:${phoneNumber}?body=${encodeURIComponent(message)}`;
+    window.location.href = smsUrl;
+};
 
-    turnOnButton.addEventListener('click', function() {
-        sendSMSCommand('GON##');
-    });
+// Retrieve the GSM module number from local storage
+const gsmPhoneNumber = localStorage.getItem("gsmPhoneNumber") || "Not Set";
+document.getElementById("gsmPhoneNumber").innerText = gsmPhoneNumber;
 
-    turnOffButton.addEventListener('click', function() {
-        sendSMSCommand('GOFF##');
-    });
-
-    setLatchTimeButton.addEventListener('click', function() {
-        sendSMSCommand('GOT030#');
-    });
-
-    function sendSMSCommand(command) {
-        const password = localStorage.getItem('gsmPassword') || 'defaultPassword';
-        const phoneNumber = localStorage.getItem('gsmPhoneNumber') || 'defaultPhoneNumber';
-        const smsCommand = `sms:${phoneNumber}?body=${password}${command}`;
-        window.location.href = smsCommand;
-    }
-});
+// Buttons for relay control
+document.getElementById("turnOnButton").addEventListener("click", () => sendSMS(gsmPhoneNumber, "1234GON##"));
+document.getElementById("holdOpenButton").addEventListener("click", () => sendSMS(gsmPhoneNumber, "1234GOT999#"));
+document.getElementById("turnOffButton").addEventListener("click", () => sendSMS(gsmPhoneNumber, "1234GOFF##"));

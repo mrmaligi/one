@@ -4,12 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Relay Control</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Relay Control</h1>
-    <button id="turnOn">Turn ON</button>
-    <button id="turnOff">Turn OFF</button>
-    <button id="setLatchTime">Set Latch Time</button>
+    <div class="container">
+        <h2>GSM Relay Control</h2>
+        <p>Unit Telephone Number: <span id="gsmPhoneNumber"></span></p>
+        <p>Device: iGate 1200</p>
+
+        <button id="turnOnButton" class="button">Open</button>
+        <button id="holdOpenButton" class="button">Hold Open</button>
+        <button id="turnOffButton" class="button">Close</button>
+
+        <button onclick="window.location.href='settings.html'" class="button">Switch Site</button>
+    </div>
+
     <script src="relay-control.js"></script>
 </body>
 </html>

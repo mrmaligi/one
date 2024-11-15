@@ -1,27 +1,23 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const gsmModulePhoneNumberInput = document.getElementById('gsmModulePhoneNumber');
-    const adminPhoneNumberInput = document.getElementById('adminPhoneNumber');
-    const sendAdminSetupCommandButton = document.getElementById('sendAdminSetupCommand');
-    const newPasswordInput = document.getElementById('newPassword');
-    const changePasswordButton = document.getElementById('changePassword');
+const gsmPhoneNumber = localStorage.getItem("gsmPhoneNumber") || "Not Set";
 
-    gsmModulePhoneNumberInput.value = localStorage.getItem('gsmModulePhoneNumber') || '';
-    adminPhoneNumberInput.value = localStorage.getItem('adminPhoneNumber') || '';
+const sendSMS = (phoneNumber, message) => {
+    const smsUrl = `sms:${phoneNumber}?body=${encodeURIComponent(message)}`;
+    window.location.href = smsUrl;
+};
 
-    sendAdminSetupCommandButton.addEventListener('click', function() {
-        const gsmModulePhoneNumber = gsmModulePhoneNumberInput.value;
-        const adminPhoneNumber = adminPhoneNumberInput.value;
-        localStorage.setItem('gsmModulePhoneNumber', gsmModulePhoneNumber);
-        localStorage.setItem('adminPhoneNumber', adminPhoneNumber);
-        const adminSetupCommand = `sms:${gsmModulePhoneNumber}?body=1234TEL00614${adminPhoneNumber}#`;
-        window.location.href = adminSetupCommand;
-    });
-
-    changePasswordButton.addEventListener('click', function() {
-        const newPassword = newPasswordInput.value;
-        localStorage.setItem('gsmPassword', newPassword);
-        const gsmModulePhoneNumber = localStorage.getItem('gsmModulePhoneNumber') || 'defaultPhoneNumber';
-        const changePasswordCommand = `sms:${gsmModulePhoneNumber}?body=1234P${newPassword}`;
-        window.location.href = changePasswordCommand;
-    });
+// Set Admin Number
+document.getElementById("setAdminButton").addEventListener("click", () => {
+    const adminPhone = document.getElementById("adminPhoneInput").value;
+    sendSMS(gsmPhoneNumber, `1234TEL${adminPhone}#`);
 });
+
+// Change Password
+document.getElementById("changePasswordButton").addEventListener("click", () => {
+    const newPassword = document.getElementById("newPassword").value;
+    sendSMS(gsmPhoneNumber, `1234P${newPassword}`);
+    localStorage.setItem("password", newPassword); // Store new password
+});
+
+// Inquire Status and IMEI
+document.getElementById("inquireStatusButton").addEventListener("click", () => sendSMS(gsmPhoneNumber, `${localStorage.getItem("password") || "1234"}EE`));
+document.getElementById("inquireIMEIButton").addEventListener("click", () => sendSMS(gsmPhoneNumber, `${localStorage.getItem("password") || "1234"}IMEI#`));
